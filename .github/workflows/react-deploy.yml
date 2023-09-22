@@ -1,0 +1,47 @@
+# Nombre del flujo de trabajo
+name: react-deploy
+
+# Definir cuándo se debe ejecutar este flujo de trabajo
+on:
+  push:
+    branches:
+      - main  # Ejecutar cuando se realiza un push en la rama "main"
+  pull_request:
+    branches:
+      - main  # Ejecutar cuando se crea una solicitud de extracción en la rama "main"
+
+# Definir los trabajos que se ejecutarán en este flujo de trabajo
+jobs:
+  build:
+    # Especificar el sistema operativo en el que se ejecutará este trabajo
+    runs-on: ubuntu-22.04
+
+    # Configurar una estrategia de matriz para ejecutar el trabajo en múltiples versiones de Node.js
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    # Pasos que se ejecutarán en este trabajo
+    steps:
+      # Paso 1: Hacer checkout del repositorio
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Paso 2: Configurar Node.js con la versión especificada
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'  # Almacenar en caché las dependencias de npm para acelerar futuras ejecuciones
+
+      # Paso 3: Instalar las dependencias del proyecto Node.js
+      - name: Install Dependencies
+        run: npm ci  # Utilizar 'npm ci' para instalar dependencias de manera rápida y segura
+
+      # Paso 4: Construir la aplicación si el comando está presente en el proyecto
+      - name: Build Application
+        run: npm run build --if-present
+
+      # Paso 5: Ejecutar pruebas en la aplicación
+      - name: Run Tests
+        run: npm test
