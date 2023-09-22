@@ -45,3 +45,6 @@ jobs:
       # Paso 5: Ejecutar pruebas en la aplicación
       - name: Run Tests
         run: npm test
+      #Mostrar mensaje en pantalla
+      - name: Hola mundo
+        run: echo "Hola mundo, que tal a todos"
