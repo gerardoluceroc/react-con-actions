@@ -61,7 +61,9 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
       
-          ssh -o StrictHostKeyChecking=no root@128.199.11.106 "ls && cd Escritorio/ && ls"
+          ssh -o StrictHostKeyChecking=no root@128.199.11.106 "ls"
+          cd Escritorio/
+          ls
 
       - name: Acciones Servidor
         run: |
