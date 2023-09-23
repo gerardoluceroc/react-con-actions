@@ -24,6 +24,7 @@ jobs:
     #Variables de entorno 
     env:
       MENSAJE_RANDOM: ${{ secrets.MENSAJE_RANDOM }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     # Pasos que se ejecutarán en este trabajo
     steps:
@@ -53,3 +54,12 @@ jobs:
       #Mostrar mensaje en pantalla
       - name: Hola mundo
         run: echo $MENSAJE_RANDOM
+      
+      #Entrar al droplet de Digital Ocean
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 128.199.11.106
+          username: root
+          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: ls
