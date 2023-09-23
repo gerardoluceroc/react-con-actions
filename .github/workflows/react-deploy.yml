@@ -57,7 +57,7 @@ jobs:
       
       #Entrar al droplet de Digital Ocean
       - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v0.1.2
         with:
           host: 128.199.11.106
           username: root
