@@ -20,6 +20,10 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
+    
+    #Variables de entorno 
+    env:
+      MENSAJE_RANDOM: ${{ secrets.MENSAJE_RANDOM }}
 
     # Pasos que se ejecutarán en este trabajo
     steps:
@@ -45,6 +49,7 @@ jobs:
       # Paso 5: Ejecutar pruebas en la aplicación
       - name: Run Tests
         run: npm test
+
       #Mostrar mensaje en pantalla
       - name: Hola mundo
-        run: echo "Hola mundo, que tal a todos"
+        run: echo "Hola mundo, el mensaje random es: $MENSAJE_RANDOM"
