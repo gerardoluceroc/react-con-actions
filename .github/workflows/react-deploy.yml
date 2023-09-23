@@ -62,6 +62,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
       
           ssh -o StrictHostKeyChecking=no root@128.199.11.106 "ls"
+          cd Escritorio/
 
       - name: Acciones Servidor
         run: |
