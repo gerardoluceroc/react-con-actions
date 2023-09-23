@@ -40,12 +40,12 @@ jobs:
           cache: 'npm'  # Almacenar en caché las dependencias de npm para acelerar futuras ejecuciones
 
       # Paso 3: Instalar las dependencias del proyecto Node.js
-      - name: Install Dependencies
-        run: npm install  # Utilizar 'npm ci' para instalar dependencias de manera rápida y segura
+      #- name: Install Dependencies
+      #  run: npm install  # Utilizar 'npm ci' para instalar dependencias de manera rápida y segura
 
       # Paso 4: Construir la aplicación si el comando está presente en el proyecto
-      - name: Build Application
-        run: npm run build --if-present
+      #- name: Build Application
+      #  run: npm run build --if-present
 
       # Paso 5: Ejecutar pruebas en la aplicación
       #- name: Run Tests
@@ -54,12 +54,22 @@ jobs:
       #Mostrar mensaje en pantalla
       - name: Hola mundo
         run: echo $MENSAJE_RANDOM
+
+      - name: Ejecutar comandos SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
       
+          ssh -o StrictHostKeyChecking=no root@128.199.11.106 "ls"
+      
+      
+
       #Entrar al droplet de Digital Ocean
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v0.1.2
-        with:
-          host: 128.199.11.106
-          username: root
-          password: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: ls
+      # - name: executing remote ssh commands using password
+      #   uses: appleboy/ssh-action@v0.1.2
+      #   with:
+      #     host: 128.199.11.106
+      #     username: root
+      #     password: 
+      #     script: ls
