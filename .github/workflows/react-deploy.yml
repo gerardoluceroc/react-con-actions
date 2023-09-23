@@ -52,4 +52,4 @@ jobs:
 
       #Mostrar mensaje en pantalla
       - name: Hola mundo
-        run: echo "Hola mundo, el mensaje random es: $MENSAJE_RANDOM"
+        run: echo "Hola mundo, el mensaje random es:$MENSAJE_RANDOM"
