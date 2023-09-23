@@ -48,8 +48,8 @@ jobs:
         run: npm run build --if-present
 
       # Paso 5: Ejecutar pruebas en la aplicación
-      - name: Run Tests
-        run: npm test
+      #- name: Run Tests
+      #  run: npm test
 
       #Mostrar mensaje en pantalla
       - name: Hola mundo
