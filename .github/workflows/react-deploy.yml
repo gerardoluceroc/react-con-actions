@@ -90,4 +90,6 @@ jobs:
           port: 22
           script: |
             echo "hola cabross"
-            ls 
+            mkdir carpetaSSH
+            ls
+
