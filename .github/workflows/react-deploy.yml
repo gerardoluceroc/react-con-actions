@@ -51,24 +51,24 @@ jobs:
       #- name: Run Tests
       #  run: npm test
 
-      #Mostrar mensaje en pantalla
-      - name: Hola mundo
-        run: echo $MENSAJE_RANDOM
+      # #Mostrar mensaje en pantalla
+      # - name: Hola mundo
+      #   run: echo $MENSAJE_RANDOM
 
-      - name: Ejecutar comandos SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+      # - name: Ejecutar comandos SSH
+      #   run: |
+      #     mkdir -p ~/.ssh
+      #     echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+      #     chmod 600 ~/.ssh/id_rsa
       
-          ssh -o StrictHostKeyChecking=no root@128.199.11.106 "ls"
-          cd Escritorio/
-          ls
+      #     ssh -o StrictHostKeyChecking=no root@128.199.11.106 "ls"
+      #     cd Escritorio/
+      #     ls
 
-      - name: Acciones Servidor
-        run: |
-          cd Escritorio/
-          ls
+      # - name: Acciones Servidor
+      #   run: |
+      #     cd Escritorio/
+      #     ls
       
       
 
@@ -80,3 +80,14 @@ jobs:
       #     username: root
       #     password: 
       #     script: ls
+
+      - name: multiple command
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 128.199.11.106
+          username: root
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            echo "hola cabros"
+            ls 
